@@ -71,15 +71,50 @@ La page d'ajout est un simple formulaire pour créer un nouveau collaborateur :
 
 ## Contraintes techniques
 
-Vous **devez** utiliser la bibliothèque React, avec le bundler [ViteJS](https://vitejs.dev/) (qui est beaucoup plus rapide que `create-react-app`).
+### Récupérer le serveur
 
-Pour démarrer, utilisez la commande suivante :
+Le serveur contenant l'API vous est déjà fourni.
+
+Commencez par créer un nouveau répertoire pour votre projet :
 
 ```bash
-npm create vite@latest my-vue-app -- --template react
+# Récupération du serveur API
+git clone git@github.com:jm-courses/sujet-react-intranet.git --depth 1 --branch "main" "projet-intranet"
 ```
 
-#### Service
+Installez les dépendances du serveur dans le sous-dossier `/server-json/` :
+
+```bash
+cd projet-intranet/server-json
+
+npm install
+```
+
+Pour lancer le serveur API, tapez simplement la commande :
+
+```bash
+npm run api
+```
+
+Cela ouvrira la page http://localhost:7000/ dans votre navigateur web, contenant **la documentation de l'API.**
+
+### Initialiser le front-end
+
+Vous **devez** utiliser la bibliothèque React, avec le bundler [ViteJS](https://vitejs.dev/) (et non `create-react-app` !)
+
+Replacez-vous dans le répertoire de projet créé précédemment :
+
+```bash
+cd projet-intranet
+```
+
+Initialisez avec ViteJS un nouveau dossier `/client/` pour l'application front-end :
+
+```bash
+npm create vite@latest client -- --template react
+```
+
+#### Services JavaScript
 
 Pour communiquer avec l'API, vous utiliserez un fichier de **service JS** à part des components React.
 
@@ -113,42 +148,6 @@ Vous organiserez vos dossiers selon l'architecture suivante :
     ├── services    # les services JS (axios, localStorage)
     └── features    # les features Redux Toolkit
 ```
-
-## Récupérer le serveur
-
-Le serveur contenant l'API vous est déjà fourni.
-
-Commencez par créer un nouveau répertoire pour votre projet :
-
-```bash
-mkdir -p intranet/
-```
-
-```bash
-mkdir -p exam-intranet
-cd exam-intranet
-git clone git@github.com/jm-courses/exam-intranet.git --depth 1 --branch "Branch name" "Git Repo" "Folder name"
-cd ../
-
-# https://digitaldrummerj.me/git-clone-branch/
-```
-
-...
-
-Ouvrez un terminal à l'emplacement du répertoire et installez d'abord les dépendances :
-
-```bash
-cd server-json
-npm install
-```
-
-Puis, lancez l'API :
-
-```bash
-npm run api
-```
-
-Cela ouvrira la page http://localhost:7000/ dans votre navigateur web, contenant **la documentation de l'API.**
 
 ## Détails supplémentaires
 
