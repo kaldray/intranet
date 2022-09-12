@@ -114,6 +114,20 @@ Initialisez avec ViteJS un nouveau dossier `/client/` pour l'application front-e
 npm create vite@latest client -- --template react
 ```
 
+Déplacez-vous ensuite dans le sous-répertoire `/client/` et installez les dépendances :
+
+```bash
+cd client
+
+npm install
+```
+
+Puis lancez le front :
+
+```bash
+npm run dev
+```
+
 #### Services JavaScript
 
 Pour communiquer avec l'API, vous utiliserez un fichier de **service JS** à part des components React.
