@@ -9,7 +9,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Pages.Login />} />
                     <Route
-                        path="/protected"
+                        path="/home"
                         element={
                             <Pages.ProtectedRoutes redirectTo={"/"}>
                                 <Pages.Home />
