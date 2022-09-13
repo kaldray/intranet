@@ -1,0 +1,99 @@
+@import "../variables.scss";
+
+.nav__container {
+    display: grid;
+    position: fixed;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    place-items: center;
+    background-color: $RifleGreen;
+    width: 100%;
+    padding: 1rem;
+    row-gap: 2rem;
+    z-index: 5;
+}
+
+h1 {
+    grid-column: 1;
+}
+
+.button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    grid-column: 12;
+    width: 2rem;
+    height: 2rem;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        border-radius: 9px;
+        background-color: black;
+        left: 0%;
+        transform: rotate(0deg);
+        transition: 0.25s ease-in-out;
+    }
+
+    span:nth-child(1) {
+        top: 0.5rem;
+    }
+    span:nth-child(2) {
+        bottom: 0.5rem;
+    }
+}
+
+.navigation {
+    display: grid;
+    grid-row: 2;
+    grid-column: 1 / span 12;
+    place-self: center;
+    color: white;
+    li {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@keyframes smooth {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+@keyframes dropDown {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .button {
+        display: none;
+    }
+    .navigation {
+        grid-row: 1;
+        grid-column: 12;
+        li {
+            margin-bottom: inherit;
+        }
+        ul {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-around;
+        }
+    }
+    h1 {
+        grid-row: 1;
+    }
+}

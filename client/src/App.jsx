@@ -1,12 +1,17 @@
 import React from "react";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import * as Pages from "@app/Pages";
 
 function App() {
-  return (
-    <>
-      <div>App</div>
-    </>
-  );
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Pages.Login />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default App;
