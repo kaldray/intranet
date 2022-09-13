@@ -8,6 +8,14 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Pages.Login />} />
+                    <Route
+                        path="/protected"
+                        element={
+                            <Pages.ProtectedRoutes redirectTo={"/"}>
+                                <Pages.Home />
+                            </Pages.ProtectedRoutes>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </>
