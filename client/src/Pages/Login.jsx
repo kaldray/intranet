@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Layout } from "@app/Components";
 import { userLogin } from "@app/Services";
@@ -12,16 +12,23 @@ export const Login = () => {
     const mail = useRef();
     const password = useRef();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    async function login(email, password) {
+    async function login(e, email, password) {
+        e.preventDefault();
         const { user } = await userLogin(email, password);
+        navigate("/home", {
+            replace: true
+        });
         dispatch(setUser(user));
     }
 
     return (
         <>
             <Layout>
-                <form className={form__container}>
+                <form
+                    onSubmit={(e) => login(e, mail.current.value, password.current.value)}
+                    className={form__container}>
                     <div className={form__group}>
                         <label htmlFor="email">Email</label>
                         <input ref={mail} aria-autocomplete="mail" name="email" type="mail" />
@@ -35,12 +42,7 @@ export const Login = () => {
                             type="password"
                         />
                     </div>
-                    <Link
-                        onClick={() => login(mail.current.value, password.current.value)}
-                        to={"/home"}
-                        replace={true}>
-                        <button>Se connecter</button>
-                    </Link>
+                    <button type="submit">Se connecter</button>
                 </form>
             </Layout>
         </>

@@ -29,6 +29,7 @@ export async function getRandomCollaborater() {
         console.error(err);
     }
 }
+
 export async function getAllCollaborater() {
     try {
         const response = await instance.get("/api/collaborateurs", {
