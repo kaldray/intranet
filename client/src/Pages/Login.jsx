@@ -6,7 +6,7 @@ import { Layout } from "@app/Components";
 import { userLogin } from "@app/Services";
 import { setUser } from "@app/Redux/reducers/userReducer";
 
-import { form__group, form__container } from "@app/Sass/Components/login.module.scss";
+import { form__group, form__container } from "@app/Sass/Pages/Login.module.scss";
 
 export const Login = () => {
     const mail = useRef();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-import { nav__container, button, navigation } from "@app/Sass/Components/nav.module.scss";
+import { nav__container, button, navigation } from "@app/Sass/Components/Nav.module.scss";
 
 export const Nav = () => {
     const [toggle, setToggle] = useState(false);
