@@ -54,9 +54,26 @@ h1 {
     grid-column: 1 / span 12;
     place-self: center;
     color: white;
+    li:nth-child(2) {
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 3rem;
+            border-radius: 50%;
+        }
+    }
     li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 0.5rem;
         font-size: 1.6rem;
         margin-bottom: 1rem;
+        align-self: flex-end;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 

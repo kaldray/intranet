@@ -52,3 +52,7 @@ export function getLocalStorage(item) {
         return parsedLocalStorage;
     }
 }
+
+export function removeFromLocalStorage(item) {
+    localStorage.removeItem(item);
+}

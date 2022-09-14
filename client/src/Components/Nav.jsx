@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { ReactComponent as List } from "@app/assets/list.svg";
 import { ReactComponent as LogOut } from "@app/assets/logout.svg";
 import { nav__container, button, navigation } from "@app/Sass/Components/Nav.module.scss";
-import { getLocalStorage } from "@app/Services";
+import { getLocalStorage, removeFromLocalStorage } from "@app/Services";
 
 export const Nav = () => {
     const [toggle, setToggle] = useState(false);
@@ -47,7 +47,7 @@ export const Nav = () => {
                                     <img src={user?.photo} alt="profil" />
                                     <Link to={"/profil"}>Profile</Link>
                                 </li>
-                                <li>
+                                <li onClick={() => removeFromLocalStorage("token")}>
                                     <LogOut width={30} />
                                     <Link to={"/"}>LogOut</Link>
                                 </li>
