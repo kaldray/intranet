@@ -15,3 +15,17 @@ export async function userLogin(email, password) {
         console.error(err);
     }
 }
+
+export async function getRandomCollaborater() {
+    try {
+        const response = await instance.get("/api/collaborateurs/random", {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+            }
+        });
+        const { data } = response;
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
