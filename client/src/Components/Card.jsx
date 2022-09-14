@@ -8,7 +8,17 @@ import {
     description
 } from "@app/Sass/Components/Card.module.scss";
 
-export const Card = ({ photo, firstname, lastname, country, city, phone, email, birthdate }) => {
+export const Card = ({
+    photo,
+    firstname,
+    lastname,
+    country,
+    city,
+    phone,
+    email,
+    birthdate,
+    service
+}) => {
     const location = useLocation();
     return (
         <>
@@ -20,6 +30,7 @@ export const Card = ({ photo, firstname, lastname, country, city, phone, email, 
                     </figcaption>
                 </figure>
                 <div className={description}>
+                    <p>{service}</p>
                     <a href={`tel:${phone}`}>{phone} </a>
                     <a href={`mailto:${email}`}>{email} </a>
                     <p>{birthdate}</p>
