@@ -42,3 +42,13 @@ export async function getAllCollaborater() {
         console.error(err);
     }
 }
+
+export function getLocalStorage(item) {
+    const dataFromLocalStorage = localStorage.getItem(item);
+    if (dataFromLocalStorage === undefined || dataFromLocalStorage === null) {
+        return null;
+    } else {
+        let parsedLocalStorage = JSON.parse(dataFromLocalStorage);
+        return parsedLocalStorage;
+    }
+}

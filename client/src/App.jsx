@@ -24,6 +24,14 @@ function App() {
                             </Pages.ProtectedRoutes>
                         }
                     />
+                    <Route
+                        path="/profil"
+                        element={
+                            <Pages.ProtectedRoutes redirectTo={"/"}>
+                                <Pages.Profil />
+                            </Pages.ProtectedRoutes>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </>
