@@ -70,3 +70,25 @@
         font-size: 1.5rem;
     }
 }
+
+@media screen and (min-width: 480px) {
+    .card__container {
+        width: 30rem;
+        button {
+            font-size: 1.8rem;
+        }
+    }
+    .description {
+        p {
+            font-size: 1.8rem;
+        }
+        a {
+            font-size: 1.8rem;
+        }
+    }
+    .img__container {
+        figcaption {
+            font-size: 1.8rem;
+        }
+    }
+}

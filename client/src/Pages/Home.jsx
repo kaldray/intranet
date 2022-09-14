@@ -14,36 +14,37 @@ import {
 export const Home = () => {
     const [info, setInfo] = useState();
 
+    async function collaborater() {
+        const data = await getRandomCollaborater();
+        const {
+            id,
+            gender,
+            firstname,
+            lastname,
+            email,
+            phone,
+            birthdate,
+            city,
+            country,
+            photo,
+            service
+        } = data;
+        setInfo({
+            id,
+            gender,
+            firstname,
+            lastname,
+            email,
+            phone,
+            birthdate,
+            city,
+            country,
+            photo,
+            service
+        });
+    }
+
     useEffect(() => {
-        async function collaborater() {
-            const data = await getRandomCollaborater();
-            const {
-                id,
-                gender,
-                firstname,
-                lastname,
-                email,
-                phone,
-                birthdate,
-                city,
-                country,
-                photo,
-                service
-            } = data;
-            setInfo({
-                id,
-                gender,
-                firstname,
-                lastname,
-                email,
-                phone,
-                birthdate,
-                city,
-                country,
-                photo,
-                service
-            });
-        }
         collaborater();
     }, []);
 
@@ -69,7 +70,7 @@ export const Home = () => {
                             {info?.city}, {info?.country}
                         </div>
                     </div>
-                    <button>Quelqu'un d'autre !</button>
+                    <button onClick={() => collaborater()}>Quelqu'un d'autre !</button>
                 </div>
             </Layout>
         </>
