@@ -16,6 +16,14 @@ function App() {
                             </Pages.ProtectedRoutes>
                         }
                     />
+                    <Route
+                        path="/list"
+                        element={
+                            <Pages.ProtectedRoutes redirectTo={"/"}>
+                                <Pages.List />
+                            </Pages.ProtectedRoutes>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </>

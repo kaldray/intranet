@@ -7,9 +7,11 @@
     justify-content: center;
     background-color: #faebd7;
     gap: 1rem;
-    grid-row: 2;
+    grid-row: auto;
     grid-column: 1 / span 12;
     padding: 0.7rem;
+    width: 25rem;
+    max-width: 30rem;
 
     button {
         background-color: $RifleGreen;
@@ -42,9 +44,6 @@
     }
 }
 
-.location {
-    align-items: flex-end;
-}
 .description {
     display: flex;
     flex-direction: column;
@@ -62,6 +61,7 @@
 @media screen and (min-width: 480px) {
     .card__container {
         width: 30rem;
+        grid-column: initial;
         button {
             font-size: 1.8rem;
         }
@@ -78,5 +78,8 @@
         figcaption {
             font-size: 1.8rem;
         }
+    }
+    .localisation {
+        font-size: 1.8rem;
     }
 }

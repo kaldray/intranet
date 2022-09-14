@@ -29,3 +29,16 @@ export async function getRandomCollaborater() {
         console.error(err);
     }
 }
+export async function getAllCollaborater() {
+    try {
+        const response = await instance.get("/api/collaborateurs", {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+            }
+        });
+        const { data } = response;
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}

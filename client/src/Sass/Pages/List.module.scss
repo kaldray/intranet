@@ -1,0 +1,20 @@
+.list__container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    grid-column: 1 / span 12;
+    width: 90%;
+    margin: auto;
+    align-content: baseline;
+    height: 100vh;
+    row-gap: 2rem;
+    place-items: center;
+    margin-top: 3rem;
+
+    @media (min-width: 480px) {
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        column-gap: 3rem;
+        row-gap: 5rem;
+        padding: 1.5rem;
+    }
+}

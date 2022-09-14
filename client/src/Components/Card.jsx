@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import {
     img__container,
     card__container,
-    location,
+    localisation,
     description
 } from "@app/Sass/Components/Card.module.scss";
 
@@ -23,7 +23,7 @@ export const Card = ({ photo, firstname, lastname, country, city, phone, email, 
                     <a href={`tel:${phone}`}>{phone} </a>
                     <a href={`mailto:${email}`}>{email} </a>
                     <p>{birthdate}</p>
-                    <div className={location}>
+                    <div className={localisation}>
                         {city}, {country}
                     </div>
                 </div>

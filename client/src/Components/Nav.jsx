@@ -33,7 +33,7 @@ export const Nav = () => {
                     <nav className={navigation}>
                         <ul>
                             <li>
-                                <Link to={"/"}>List</Link>
+                                <Link to={"/list"}>List</Link>
                             </li>
                             <li>
                                 <Link to={"/"}>Profile</Link>

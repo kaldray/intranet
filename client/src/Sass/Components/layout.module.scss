@@ -6,4 +6,8 @@
     grid-template-rows: auto;
     place-items: center;
     padding-top: 4.4rem;
+
+    @media screen and (min-width: 480px) {
+        grid-template-columns: initial;
+    }
 }
