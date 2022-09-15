@@ -32,6 +32,14 @@ function App() {
                             </Pages.ProtectedRoutes>
                         }
                     />
+                    <Route
+                        path="/add"
+                        element={
+                            <Pages.AdminProtectedRoutes redirectTo={"/home"}>
+                                <Pages.AddUser />
+                            </Pages.AdminProtectedRoutes>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </>

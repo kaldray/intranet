@@ -9,7 +9,6 @@ export async function userLogin(email, password) {
     try {
         const response = await instance.post("/api/login", { email, password });
         const { data } = response;
-        console.log(data);
         localStorage.setItem("token", JSON.stringify(data.token));
         return data;
     } catch (err) {
@@ -61,6 +60,20 @@ export async function modifyProfil(id, body) {
 export async function deleteUser(id) {
     try {
         const response = await instance.delete(`/api/collaborateurs/${id}`, {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+            }
+        });
+        const { data } = response;
+        console.log(data);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function addNewUser(body) {
+    try {
+        const response = await instance.post(`/api/collaborateurs`, body, {
             headers: {
                 Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
             }
