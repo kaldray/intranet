@@ -44,6 +44,20 @@ export async function getAllCollaborater() {
     }
 }
 
+export async function deleteUser(id) {
+    try {
+        const response = await instance.delete(`/api/collaborateurs/${id}`, {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+            }
+        });
+        const { data } = response;
+        console.log(data);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 export function getLocalStorage(item) {
     const dataFromLocalStorage = localStorage.getItem(item);
     if (dataFromLocalStorage === undefined || dataFromLocalStorage === null) {

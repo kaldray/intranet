@@ -66,6 +66,17 @@
 .localisation {
     font-size: 1.5rem;
 }
+.admin {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    font-size: 1.6rem;
+    button {
+        background-color: $RifleGreen;
+        padding: 0.9rem;
+    }
+}
 
 @media screen and (min-width: 480px) {
     .card__container {

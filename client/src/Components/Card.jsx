@@ -1,12 +1,15 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
     img__container,
     card__container,
     localisation,
-    description
+    description,
+    admin
 } from "@app/Sass/Components/Card.module.scss";
+import { deleteUser } from "@app/Services";
 
 export const Card = ({
     photo,
@@ -17,9 +20,16 @@ export const Card = ({
     phone,
     email,
     birthdate,
-    service
+    service,
+    id
 }) => {
+    const { user } = useSelector((state) => state.user);
     const location = useLocation();
+
+    function adminDeleteUser() {
+        deleteUser(id);
+    }
+
     return (
         <>
             <div className={card__container}>
@@ -40,6 +50,12 @@ export const Card = ({
                 </div>
                 {location.pathname === "/home" && (
                     <button onClick={() => newCollaborater()}>Quelqu'un d'autre !</button>
+                )}
+                {user.isAdmin === true && (
+                    <div className={admin}>
+                        <button onClick={() => adminDeleteUser()}>Supprimer</button>
+                        <button>Modifier</button>
+                    </div>
                 )}
             </div>
         </>
