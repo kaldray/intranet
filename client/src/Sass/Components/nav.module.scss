@@ -54,7 +54,10 @@ h1 {
     grid-column: 1 / span 12;
     place-self: center;
     color: white;
-    li:nth-child(2) {
+    li {
+        text-align: center;
+    }
+    a:nth-child(2) {
         img {
             object-fit: cover;
             object-position: center;
@@ -62,17 +65,20 @@ h1 {
             border-radius: 50%;
         }
     }
-    li {
+    a {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: flex-start;
         align-items: center;
-        row-gap: 0.5rem;
+        column-gap: 0.9rem;
         font-size: 1.6rem;
         margin-bottom: 1rem;
-        align-self: flex-end;
         &:hover {
             cursor: pointer;
+        }
+        @media screen and (min-width: 480px) {
+            margin-bottom: inherit;
+            margin-right: 2rem;
         }
     }
 }

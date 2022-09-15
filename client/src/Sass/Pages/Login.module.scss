@@ -5,7 +5,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
+    grid-column: 1 / span 12;
     button {
         padding: 0.5rem;
     }

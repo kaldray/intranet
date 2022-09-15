@@ -39,18 +39,19 @@ export const Nav = () => {
                     <nav className={navigation}>
                         {token !== null && (
                             <ul>
-                                <li>
+                                <Link to={"/list"}>
                                     <List width={30} />
-                                    <Link to={"/list"}>Liste</Link>
-                                </li>
-                                <li>
+                                    <li>Liste</li>
+                                </Link>
+                                <Link to={"/profil"}>
                                     <img src={user?.photo} alt="profil" />
-                                    <Link to={"/profil"}>Profile</Link>
-                                </li>
-                                <li onClick={() => removeFromLocalStorage("token")}>
+                                    <li>Profile</li>
+                                </Link>
+
+                                <Link onClick={() => removeFromLocalStorage("token")} to={"/"}>
                                     <LogOut width={30} />
-                                    <Link to={"/"}>LogOut</Link>
-                                </li>
+                                    <li>LogOut</li>
+                                </Link>
                             </ul>
                         )}
                     </nav>
