@@ -10,6 +10,7 @@ import {
     form__group,
     form__profil
 } from "@app/Sass/Pages/Profil.module.scss";
+import { modifyProfil } from "@app/Services";
 
 export const Profil = () => {
     const {
@@ -20,8 +21,9 @@ export const Profil = () => {
     } = useForm();
     const { user } = useSelector((state) => state.user);
 
-    function submitFrom(data) {
-        console.log(data);
+    async function submitFrom(data) {
+        delete data.password2;
+        modifyProfil(user.id, data);
     }
 
     return (
@@ -103,11 +105,11 @@ export const Profil = () => {
                                 />
                             </div>
                             <div className={input__group}>
-                                <label htmlFor="date">Date de naissance</label>
+                                <label htmlFor="birthdate">Date de naissance</label>
                                 <input
-                                    {...register("date")}
+                                    {...register("birthdate")}
                                     defaultValue={user?.birthdate}
-                                    name="date"
+                                    name="birthdate"
                                     type="date"
                                 />
                             </div>

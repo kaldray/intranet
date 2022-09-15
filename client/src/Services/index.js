@@ -9,6 +9,7 @@ export async function userLogin(email, password) {
     try {
         const response = await instance.post("/api/login", { email, password });
         const { data } = response;
+        console.log(data);
         localStorage.setItem("token", JSON.stringify(data.token));
         return data;
     } catch (err) {
@@ -39,6 +40,19 @@ export async function getAllCollaborater() {
         });
         const { data } = response;
         return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function modifyProfil(id, body) {
+    try {
+        const response = await instance.put(`/api/collaborateurs/${id}`, body, {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+            }
+        });
+        const { data } = response;
     } catch (err) {
         console.error(err);
     }
