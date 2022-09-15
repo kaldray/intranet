@@ -1,0 +1,78 @@
+@import "../variables.scss";
+
+.form__profil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    align-items: center;
+    position: relative;
+    button {
+        margin: auto;
+        width: 10rem;
+        padding: 0.5rem;
+        margin-top: 2rem;
+        font-size: 1.6rem;
+    }
+    span {
+        text-align: center;
+        color: red;
+        font-size: 1.6rem;
+    }
+}
+
+.form__container {
+    display: flex;
+    grid-column: 1 / span 12;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input__group {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    label {
+        font-size: 1.6rem;
+    }
+    select {
+        width: 20rem;
+        max-width: 30rem;
+        margin-bottom: 1rem;
+    }
+    input {
+        width: 20rem;
+        margin-bottom: 1rem;
+        max-width: 30rem;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .input__group {
+        input {
+            height: 2rem;
+        }
+        select {
+            height: 2rem;
+        }
+    }
+    .form__profil {
+        width: 80%;
+        flex-wrap: wrap;
+        flex-direction: initial;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2rem;
+        button {
+            position: absolute;
+            bottom: -15%;
+        }
+    }
+}
