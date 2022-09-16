@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { filterCollaboraters } from "@app/Redux/reducers/collaboratersReducer";
 
 import {
     img__container,
@@ -26,9 +27,17 @@ export const Card = ({
 }) => {
     const { currentUser } = useSelector((state) => state.user);
     const location = useLocation();
+    const dispatch = useDispatch();
 
-    function adminDeleteUser() {
-        deleteUser(id);
+    async function adminDeleteUser() {
+        try {
+            const { status } = await deleteUser(id);
+            if (status === 200) {
+                dispatch(filterCollaboraters(id));
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (

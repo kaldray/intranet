@@ -10,10 +10,15 @@ export const collaboratersSlice = createSlice({
     reducers: {
         setCollaboraters: (state, action) => {
             state.collaboraters = action.payload;
+        },
+        filterCollaboraters: (state, action) => {
+            state.collaboraters = state.collaboraters.filter(({ id }) => {
+                return id !== action.payload;
+            });
         }
     }
 });
 
-export const { setCollaboraters } = collaboratersSlice.actions;
+export const { setCollaboraters, filterCollaboraters } = collaboratersSlice.actions;
 
 export default collaboratersSlice.reducer;

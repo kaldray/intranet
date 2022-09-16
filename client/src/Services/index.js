@@ -79,8 +79,8 @@ export async function deleteUser(id) {
                 Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
             }
         });
-        const { data } = response;
-        console.log(data);
+        const { data, status } = response;
+        return { status, data };
     } catch (err) {
         console.error(err);
     }
