@@ -35,7 +35,7 @@ export const Nav = () => {
                     <span></span>
                     <span></span>
                 </button>
-                {(toggle || largeur > 480) && (
+                {token !== null && (toggle || largeur > 480) && (
                     <nav className={navigation}>
                         {token !== null && (
                             <ul>
