@@ -40,6 +40,14 @@ function App() {
                             </Pages.AdminProtectedRoutes>
                         }
                     />
+                    <Route
+                        path="/modify/:id"
+                        element={
+                            <Pages.AdminProtectedRoutes redirectTo={"/home"}>
+                                <Pages.ModifyUser />
+                            </Pages.AdminProtectedRoutes>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </>

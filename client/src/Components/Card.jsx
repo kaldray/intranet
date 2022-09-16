@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import {
@@ -54,7 +54,9 @@ export const Card = ({
                 {user.isAdmin === true && (
                     <div className={admin}>
                         <button onClick={() => adminDeleteUser()}>Supprimer</button>
-                        <button>Modifier</button>
+                        <Link to={`/modify/${id}`}>
+                            <button>Modifier</button>
+                        </Link>
                     </div>
                 )}
             </div>

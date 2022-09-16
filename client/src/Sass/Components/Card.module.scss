@@ -75,6 +75,7 @@
     button {
         background-color: $RifleGreen;
         padding: 0.9rem;
+        width: 8rem;
     }
 }
 
@@ -101,5 +102,10 @@
     }
     .localisation {
         font-size: 1.8rem;
+    }
+    .admin {
+        button {
+            width: 10rem;
+        }
     }
 }

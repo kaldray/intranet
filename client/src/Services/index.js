@@ -43,6 +43,19 @@ export async function getAllCollaborater() {
         console.error(err);
     }
 }
+export async function getSpecificCollaborater(id) {
+    try {
+        const response = await instance.get(`/api/collaborateurs/${id}`, {
+            headers: {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+            }
+        });
+        const { data } = response;
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 export async function modifyProfil(id, body) {
     try {
