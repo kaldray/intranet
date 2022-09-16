@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { setCollaboraters } from "@app/Redux/reducers/collaboratersReducer";
 
 import { Layout } from "@app/Components";
 import { getAllCollaborater } from "@app/Services";
@@ -13,14 +15,15 @@ import {
 } from "@app/Sass/Pages/List.module.scss";
 
 export const List = () => {
-    const [collaboraters, setCollaboraters] = useState();
     const [filter, setFilter] = useState();
     const { register, handleSubmit } = useForm({ mode: "onChange" });
+    const { collaboraters } = useSelector((state) => state.collaboraters);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         async function fetchCollaborators() {
             const data = await getAllCollaborater();
-            setCollaboraters(data);
+            dispatch(setCollaboraters(data));
             setFilter(data);
         }
         fetchCollaborators();
@@ -35,7 +38,7 @@ export const List = () => {
                     val.service === "Marketing"
                 );
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
         if (name === "name" && categorie === "Technique") {
             const filterCollaborateur = filter.filter((val) => {
@@ -45,7 +48,7 @@ export const List = () => {
                     val.service === "Technique"
                 );
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
         if (name === "name" && categorie === "Client") {
             const filterCollaborateur = filter.filter((val) => {
@@ -55,31 +58,31 @@ export const List = () => {
                     val.service === "Client"
                 );
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
         if (name === "city" && categorie === "Client") {
             const filterCollaborateur = filter.filter((val) => {
                 return val.city.toLowerCase().includes(input) && val.service === "Client";
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
         if (name === "city" && categorie === "Technique") {
             const filterCollaborateur = filter.filter((val) => {
                 return val.city.toLowerCase().includes(input) && val.service === "Technique";
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
         if (name === "city" && categorie === "Marketing") {
             const filterCollaborateur = filter.filter((val) => {
                 return val.city.toLowerCase().includes(input) && val.service === "Marketing";
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
         if (name === "city" && categorie === "All") {
             const filterCollaborateur = filter.filter((val) => {
                 return val.city.toLowerCase().includes(input);
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
         if (name === "name" && categorie === "All") {
             const filterCollaborateur = filter.filter((val) => {
@@ -88,7 +91,7 @@ export const List = () => {
                     val.lastname.toLowerCase().includes(input)
                 );
             });
-            setCollaboraters(filterCollaborateur);
+            dispatch(setCollaboraters(filterCollaborateur));
         }
     }
 
