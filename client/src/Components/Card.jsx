@@ -61,7 +61,7 @@ export const Card = ({
                 {location.pathname === "/home" && (
                     <button onClick={() => newCollaborater()}>Quelqu'un d'autre !</button>
                 )}
-                {currentUser.isAdmin === true && (
+                {(currentUser.isAdmin === true) && location.pathname === "/list" && (
                     <div className={admin}>
                         <button onClick={() => adminDeleteUser()}>Supprimer</button>
                         <Link to={`/modify/${id}`}>
