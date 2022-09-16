@@ -19,11 +19,11 @@ export const Profil = () => {
         getValues,
         formState: { errors }
     } = useForm();
-    const { user } = useSelector((state) => state.user);
+    const { currentUser } = useSelector((state) => state.user);
 
     async function submitFrom(data) {
         delete data.password2;
-        modifyProfil(user.id, data);
+        modifyProfil(currentUser.id, data);
     }
 
     return (
@@ -36,7 +36,7 @@ export const Profil = () => {
                                 <label htmlFor="gender">Genre</label>
                                 <select
                                     {...register("gender")}
-                                    defaultValue={user?.gender}
+                                    defaultValue={currentUser?.gender}
                                     name="gender">
                                     <option value="female">Femme</option>
                                     <option value="male">Homme</option>
@@ -46,7 +46,7 @@ export const Profil = () => {
                                 <label htmlFor="service">Services</label>
                                 <select
                                     {...register("service")}
-                                    defaultValue={user?.service}
+                                    defaultValue={currentUser?.service}
                                     name="service">
                                     <option value="Technique">Technique</option>
                                     <option value="Client">Client</option>
@@ -57,7 +57,7 @@ export const Profil = () => {
                                 <label htmlFor="lastname">Nom</label>
                                 <input
                                     {...register("lastname")}
-                                    defaultValue={user?.lastname}
+                                    defaultValue={currentUser?.lastname}
                                     name="lastname"
                                     type="text"
                                 />
@@ -66,7 +66,7 @@ export const Profil = () => {
                                 <label htmlFor="firstname">Prénom</label>
                                 <input
                                     {...register("firstname")}
-                                    defaultValue={user?.firstname}
+                                    defaultValue={currentUser?.firstname}
                                     type="firstname"
                                 />
                             </div>
@@ -74,7 +74,7 @@ export const Profil = () => {
                                 <label htmlFor="email">Email</label>
                                 <input
                                     {...register("email")}
-                                    defaultValue={user?.email}
+                                    defaultValue={currentUser?.email}
                                     name="email"
                                     type="email"
                                 />
@@ -99,7 +99,7 @@ export const Profil = () => {
                                 <label htmlFor="phone">Téléphone</label>
                                 <input
                                     {...register("phone")}
-                                    defaultValue={user?.phone}
+                                    defaultValue={currentUser?.phone}
                                     name="phone"
                                     type="tel"
                                 />
@@ -108,7 +108,7 @@ export const Profil = () => {
                                 <label htmlFor="birthdate">Date de naissance</label>
                                 <input
                                     {...register("birthdate")}
-                                    defaultValue={user?.birthdate}
+                                    defaultValue={currentUser?.birthdate}
                                     name="birthdate"
                                     type="date"
                                 />
@@ -117,7 +117,7 @@ export const Profil = () => {
                                 <label htmlFor="city">Ville</label>
                                 <input
                                     {...register("city")}
-                                    defaultValue={user?.city}
+                                    defaultValue={currentUser?.city}
                                     name="city"
                                     type="text"
                                 />
@@ -126,7 +126,7 @@ export const Profil = () => {
                                 <label htmlFor="country">Pays</label>
                                 <input
                                     {...register("country")}
-                                    defaultValue={user?.country}
+                                    defaultValue={currentUser?.country}
                                     name="country"
                                     type="text"
                                 />
@@ -135,7 +135,7 @@ export const Profil = () => {
                                 <label htmlFor="photo">Url de la photo</label>
                                 <input
                                     {...register("photo")}
-                                    defaultValue={user?.photo}
+                                    defaultValue={currentUser?.photo}
                                     name="photo"
                                     type="url"
                                 />

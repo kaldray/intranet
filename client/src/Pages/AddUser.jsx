@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 
 import { Layout } from "@app/Components";
 
@@ -19,8 +18,6 @@ export const AddUser = () => {
         getValues,
         formState: { errors }
     } = useForm();
-
-    const { user } = useSelector((state) => state.user);
 
     async function submitFrom(data) {
         delete data.password2;

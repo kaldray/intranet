@@ -3,6 +3,6 @@ import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export const AdminProtectedRoutes = ({ children, redirectTo }) => {
-    const { user } = useSelector((state) => state.user);
-    return user?.isAdmin === true ? children : <Navigate to={redirectTo} />;
+    const { currentUser } = useSelector((state) => state.user);
+    return currentUser?.isAdmin === true ? children : <Navigate to={redirectTo} />;
 };

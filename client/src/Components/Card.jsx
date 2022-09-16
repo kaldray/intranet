@@ -24,7 +24,7 @@ export const Card = ({
     id,
     newCollaborater
 }) => {
-    const { user } = useSelector((state) => state.user);
+    const { currentUser } = useSelector((state) => state.user);
     const location = useLocation();
 
     function adminDeleteUser() {
@@ -52,7 +52,7 @@ export const Card = ({
                 {location.pathname === "/home" && (
                     <button onClick={() => newCollaborater()}>Quelqu'un d'autre !</button>
                 )}
-                {user.isAdmin === true && (
+                {currentUser.isAdmin === true && (
                     <div className={admin}>
                         <button onClick={() => adminDeleteUser()}>Supprimer</button>
                         <Link to={`/modify/${id}`}>

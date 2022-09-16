@@ -11,7 +11,7 @@ import { getLocalStorage, removeFromLocalStorage } from "@app/Services";
 export const Nav = () => {
     const [toggle, setToggle] = useState(false);
     const [largeur, setLargeur] = useState(window.innerWidth);
-    const { user } = useSelector((state) => state.user);
+    const { currentUser } = useSelector((state) => state.user);
     const btn = useRef();
     const token = getLocalStorage("token");
     useEffect(() => {
@@ -39,14 +39,14 @@ export const Nav = () => {
                     <nav className={navigation}>
                         {token !== null && (
                             <ul>
-                                {user.isAdmin === true && (
+                                {currentUser.isAdmin === true && (
                                     <Link to={"/add"}>
                                         <User width={30} />
                                         <li>Ajouter</li>
                                     </Link>
                                 )}
                                 <Link to={"/profil"}>
-                                    <img src={user?.photo} alt="profil" />
+                                    <img src={currentUser?.photo} alt="profil" />
                                     <li>Profile</li>
                                 </Link>
                                 <Link to={"/list"}>
