@@ -65,7 +65,8 @@ export async function modifyProfil(id, body) {
                 Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
             }
         });
-        const { data } = response;
+        const { data, statusText, status } = response;
+        return { data, statusText, status };
     } catch (err) {
         console.error(err);
     }

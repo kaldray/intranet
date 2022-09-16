@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "@app/Redux/reducers/userReducer";
 
 import { Layout } from "@app/Components";
 
@@ -20,10 +21,22 @@ export const Profil = () => {
         formState: { errors }
     } = useForm();
     const { currentUser } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
-    async function submitFrom(data) {
-        delete data.password2;
-        modifyProfil(currentUser.id, data);
+    async function submitFrom(values) {
+        delete values.password2;
+        try {
+            const {
+                data: { collaborateur },
+                status
+            } = await modifyProfil(currentUser.id, values);
+            if (status === 201) {
+                dispatch(setUser(collaborateur));
+                console.log(currentUser);
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
