@@ -21,7 +21,8 @@ export const Card = ({
     email,
     birthdate,
     service,
-    id
+    id,
+    newCollaborater
 }) => {
     const { user } = useSelector((state) => state.user);
     const location = useLocation();

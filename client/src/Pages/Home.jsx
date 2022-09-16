@@ -50,7 +50,7 @@ export const Home = () => {
                     <h2>Bienvenue sur l'intranet de Mapple</h2>
                     <p>Faites connaisance avec vos collaborateurs</p>
                 </div>
-                {info && <Card {...info} />}
+                {info && <Card newCollaborater={newCollaborater} {...info} />}
             </Layout>
         </>
     );
