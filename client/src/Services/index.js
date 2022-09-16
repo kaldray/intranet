@@ -8,11 +8,12 @@ const instance = axios.create({
 export async function userLogin(email, password) {
     try {
         const response = await instance.post("/api/login", { email, password });
-        const { data } = response;
+        const { data, status } = response;
         localStorage.setItem("token", JSON.stringify(data.token));
-        return data;
+        return { data, status };
     } catch (err) {
         console.error(err);
+        return err.response;
     }
 }
 

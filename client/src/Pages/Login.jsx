@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -9,39 +10,51 @@ import { setUser } from "@app/Redux/reducers/userReducer";
 import { form__group, form__container } from "@app/Sass/Pages/Login.module.scss";
 
 export const Login = () => {
-    const mail = useRef();
-    const password = useRef();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setError
+    } = useForm();
 
-    async function login(e, email, password) {
-        e.preventDefault();
-        const { user } = await userLogin(email, password);
-        navigate("/home", {
-            replace: true
-        });
-        dispatch(setUser(user));
+    async function login({ email, password }) {
+        try {
+            const {
+                status,
+                data: { user }
+            } = await userLogin(email, password);
+            if (status > 400) {
+                setError("password", {
+                    type: "custom",
+                    message: "L'un des deux champs est invalides."
+                });
+            }
+            if (status === 200) {
+                dispatch(setUser(user));
+                navigate("/home", {
+                    replace: true
+                });
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
         <>
             <Layout>
-                <form
-                    onSubmit={(e) => login(e, mail.current.value, password.current.value)}
-                    className={form__container}>
+                <form onSubmit={handleSubmit(login)} className={form__container}>
                     <div className={form__group}>
                         <label htmlFor="email">Email</label>
-                        <input ref={mail} aria-autocomplete="mail" name="email" type="mail" />
+                        <input {...register("email")} name="email" type="email" />
                     </div>
                     <div className={form__group}>
                         <label htmlFor="password">Mot de passe</label>
-                        <input
-                            ref={password}
-                            aria-autocomplete="password"
-                            name="password"
-                            type="password"
-                        />
+                        <input {...register("password")} name="password" type="password" />
                     </div>
+                    {errors.password && <span>{errors.password.message}</span>}
                     <button type="submit">Se connecter</button>
                 </form>
             </Layout>
