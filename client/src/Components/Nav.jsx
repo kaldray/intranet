@@ -17,7 +17,7 @@ export const Nav = () => {
     useEffect(() => {
         const changeWidth = () => {
             setLargeur(window.innerWidth);
-            if (window.innerWidth > 480) setToggle(false);
+            if (window.innerWidth > 560) setToggle(false);
         };
         window.addEventListener("resize", changeWidth);
         return () => window.removeEventListener("resize", changeWidth);
@@ -35,7 +35,7 @@ export const Nav = () => {
                     <span></span>
                     <span></span>
                 </button>
-                {token !== null && (toggle || largeur > 480) && (
+                {token !== null && (toggle || largeur > 560) && (
                     <nav className={navigation}>
                         {token !== null && (
                             <ul>

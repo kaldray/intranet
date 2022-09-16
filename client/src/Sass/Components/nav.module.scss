@@ -76,7 +76,7 @@ h1 {
         &:hover {
             cursor: pointer;
         }
-        @media screen and (min-width: 480px) {
+        @media screen and (min-width: 560px) {
             margin-bottom: inherit;
             margin-right: 2rem;
         }
@@ -100,7 +100,7 @@ h1 {
     }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 560px) {
     .button {
         display: none;
     }
