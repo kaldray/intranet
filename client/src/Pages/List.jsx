@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { setCollaboraters } from "@app/Redux/reducers/collaboratersReducer";
+import {
+    setCollaboraters,
+    setFilteredCollaboraters
+} from "@app/Redux/reducers/collaboratersReducer";
 
 import { Layout } from "@app/Components";
 import { getAllCollaborater } from "@app/Services";
@@ -15,83 +18,82 @@ import {
 } from "@app/Sass/Pages/List.module.scss";
 
 export const List = () => {
-    const [filter, setFilter] = useState();
     const { register, handleSubmit } = useForm({ mode: "onChange" });
-    const { collaboraters } = useSelector((state) => state.collaboraters);
+    const { collaboraters, filteredCollaboraters } = useSelector((state) => state.collaboraters);
     const dispatch = useDispatch();
 
     useEffect(() => {
         async function fetchCollaborators() {
             const data = await getAllCollaborater();
             dispatch(setCollaboraters(data));
-            setFilter(data);
+            dispatch(setFilteredCollaboraters(data));
         }
         fetchCollaborators();
     }, []);
 
     function updateList({ input, name, categorie }) {
         if (name === "name" && categorie === "Marketing") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return (
                     (val.firstname.toLowerCase().includes(input) ||
                         val.lastname.toLowerCase().includes(input)) &&
                     val.service === "Marketing"
                 );
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
         if (name === "name" && categorie === "Technique") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return (
                     (val.firstname.toLowerCase().includes(input) ||
                         val.lastname.toLowerCase().includes(input)) &&
                     val.service === "Technique"
                 );
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
         if (name === "name" && categorie === "Client") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return (
                     (val.firstname.toLowerCase().includes(input) ||
                         val.lastname.toLowerCase().includes(input)) &&
                     val.service === "Client"
                 );
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
         if (name === "city" && categorie === "Client") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return val.city.toLowerCase().includes(input) && val.service === "Client";
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
         if (name === "city" && categorie === "Technique") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return val.city.toLowerCase().includes(input) && val.service === "Technique";
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
         if (name === "city" && categorie === "Marketing") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return val.city.toLowerCase().includes(input) && val.service === "Marketing";
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
         if (name === "city" && categorie === "All") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return val.city.toLowerCase().includes(input);
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
         if (name === "name" && categorie === "All") {
-            const filterCollaborateur = filter.filter((val) => {
+            const filterData = filteredCollaboraters.filter((val) => {
                 return (
                     val.firstname.toLowerCase().includes(input) ||
                     val.lastname.toLowerCase().includes(input)
                 );
             });
-            dispatch(setCollaboraters(filterCollaborateur));
+            dispatch(setCollaboraters(filterData));
         }
     }
 
