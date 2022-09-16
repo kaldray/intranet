@@ -31,10 +31,12 @@ export const Nav = () => {
         <>
             <div className={nav__container}>
                 <h1>Mapple</h1>
-                <button ref={btn} className={button} onClick={switchToggleMenuHmab}>
-                    <span></span>
-                    <span></span>
-                </button>
+                {token !== null && (
+                    <button ref={btn} className={button} onClick={switchToggleMenuHmab}>
+                        <span></span>
+                        <span></span>
+                    </button>
+                )}
                 {token !== null && (toggle || largeur > 560) && (
                     <nav className={navigation}>
                         {token !== null && (
