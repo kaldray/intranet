@@ -25,6 +25,9 @@ export const Profil = () => {
 
     async function submitFrom(values) {
         delete values.password2;
+        if (values.password === "") {
+            delete values.password;
+        }
         try {
             const {
                 data: { collaborateur },

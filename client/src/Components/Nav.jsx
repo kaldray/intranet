@@ -43,7 +43,7 @@ export const Nav = () => {
                             <ul>
                                 {currentUser.isAdmin === true && (
                                     <Link to={"/add"}>
-                                        <User width={30} />
+                                        <User width={25} />
                                         <li>Ajouter</li>
                                     </Link>
                                 )}
@@ -52,11 +52,11 @@ export const Nav = () => {
                                     <li>Profile</li>
                                 </Link>
                                 <Link to={"/list"}>
-                                    <List width={30} />
+                                    <List width={20} />
                                     <li>Liste</li>
                                 </Link>
                                 <Link onClick={() => removeFromLocalStorage("token")} to={"/"}>
-                                    <LogOut width={30} />
+                                    <LogOut width={20} />
                                     <li>LogOut</li>
                                 </Link>
                             </ul>
