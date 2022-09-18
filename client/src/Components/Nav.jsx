@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { ReactComponent as List } from "@app/assets/list.svg";
@@ -13,7 +13,9 @@ export const Nav = () => {
     const [largeur, setLargeur] = useState(window.innerWidth);
     const { currentUser } = useSelector((state) => state.user);
     const btn = useRef();
-    const token = getLocalStorage("token");
+    const data = getLocalStorage("token");
+    const navigate = useNavigate();
+
     useEffect(() => {
         const changeWidth = () => {
             setLargeur(window.innerWidth);
@@ -27,19 +29,25 @@ export const Nav = () => {
         setToggle(!toggle);
     }
 
+    function goToHome() {
+        if (data?.token !== undefined) {
+            navigate("/home");
+        }
+    }
+
     return (
         <>
             <div className={nav__container}>
-                <h1>Mapple</h1>
-                {token !== null && (
+                <h1 onClick={goToHome}>Mapple</h1>
+                {data?.token !== undefined && (
                     <button ref={btn} className={button} onClick={switchToggleMenuHmab}>
                         <span></span>
                         <span></span>
                     </button>
                 )}
-                {token !== null && (toggle || largeur > 560) && (
+                {data?.token !== undefined && (toggle || largeur > 560) && (
                     <nav className={navigation}>
-                        {token !== null && (
+                        {data?.token !== undefined && (
                             <ul>
                                 {currentUser.isAdmin === true && (
                                     <Link to={"/add"}>

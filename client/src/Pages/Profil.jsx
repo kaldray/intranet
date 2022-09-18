@@ -19,7 +19,7 @@ export const Profil = () => {
         handleSubmit,
         getValues,
         formState: { errors }
-    } = useForm();
+    } = useForm({});
     const { currentUser } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
@@ -35,7 +35,6 @@ export const Profil = () => {
             } = await modifyProfil(currentUser.id, values);
             if (status === 201) {
                 dispatch(setUser(collaborateur));
-                console.log(currentUser);
             }
         } catch (err) {
             console.log(err);

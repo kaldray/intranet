@@ -9,7 +9,7 @@ export async function userLogin(email, password) {
     try {
         const response = await instance.post("/api/login", { email, password });
         const { data, status } = response;
-        localStorage.setItem("token", JSON.stringify(data.token));
+        localStorage.setItem("token", JSON.stringify(data));
         return { data, status };
     } catch (err) {
         console.error(err);
@@ -18,10 +18,11 @@ export async function userLogin(email, password) {
 }
 
 export async function getRandomCollaborater() {
+    const { token } = JSON.parse(localStorage.getItem("token"));
     try {
         const response = await instance.get("/api/collaborateurs/random", {
             headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+                Authorization: "Bearer " + token
             }
         });
         const { data } = response;
@@ -32,10 +33,11 @@ export async function getRandomCollaborater() {
 }
 
 export async function getAllCollaborater() {
+    const { token } = JSON.parse(localStorage.getItem("token"));
     try {
         const response = await instance.get("/api/collaborateurs", {
             headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+                Authorization: "Bearer " + token
             }
         });
         const { data } = response;
@@ -45,10 +47,11 @@ export async function getAllCollaborater() {
     }
 }
 export async function getSpecificCollaborater(id) {
+    const { token } = JSON.parse(localStorage.getItem("token"));
     try {
         const response = await instance.get(`/api/collaborateurs/${id}`, {
             headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+                Authorization: "Bearer " + token
             }
         });
         const { data } = response;
@@ -59,10 +62,11 @@ export async function getSpecificCollaborater(id) {
 }
 
 export async function modifyProfil(id, body) {
+    const { token } = JSON.parse(localStorage.getItem("token"));
     try {
         const response = await instance.put(`/api/collaborateurs/${id}`, body, {
             headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+                Authorization: "Bearer " + token
             }
         });
         const { data, statusText, status } = response;
@@ -73,10 +77,11 @@ export async function modifyProfil(id, body) {
 }
 
 export async function deleteUser(id) {
+    const { token } = JSON.parse(localStorage.getItem("token"));
     try {
         const response = await instance.delete(`/api/collaborateurs/${id}`, {
             headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+                Authorization: "Bearer " + token
             }
         });
         const { data, status } = response;
@@ -87,14 +92,15 @@ export async function deleteUser(id) {
 }
 
 export async function addNewUser(body) {
+    const { token } = JSON.parse(localStorage.getItem("token"));
     try {
         const response = await instance.post(`/api/collaborateurs`, body, {
             headers: {
-                Authorization: "Bearer " + JSON.parse(localStorage.getItem("token"))
+                Authorization: "Bearer " + token
             }
         });
-        const { data } = response;
-        console.log(data);
+        const { data, status } = response;
+        return { data, status };
     } catch (err) {
         console.error(err);
     }

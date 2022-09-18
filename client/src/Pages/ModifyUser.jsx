@@ -32,10 +32,27 @@ export const ModifyUser = () => {
         handleSubmit,
         getValues,
         formState: { errors }
-    } = useForm();
+    } = useForm({
+        defaultValues: {
+            gender: modifyUser?.gender,
+            service: modifyUser?.service,
+            lastname: modifyUser?.lastname,
+            firstname: modifyUser?.firstname,
+            email: modifyUser?.email,
+            phone: modifyUser?.phone,
+            birthdate: modifyUser?.birthdate,
+            city: modifyUser?.city,
+            country: modifyUser?.country,
+            photo: modifyUser?.photo
+        }
+    });
 
     async function submitForm(data) {
         delete data.password2;
+        if (data.password === "") {
+            delete data.password;
+        }
+        console.log(data);
         modifyProfil(id, data);
     }
 
@@ -47,20 +64,14 @@ export const ModifyUser = () => {
                         <div className={form__group}>
                             <div className={input__group}>
                                 <label htmlFor="gender">Genre</label>
-                                <select
-                                    {...register("gender")}
-                                    defaultValue={modifyUser?.gender}
-                                    name="gender">
+                                <select {...register("gender")} name="gender">
                                     <option value="female">Femme</option>
                                     <option value="male">Homme</option>
                                 </select>
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="service">Services</label>
-                                <select
-                                    {...register("service")}
-                                    defaultValue={modifyUser?.service}
-                                    name="service">
+                                <select {...register("service")} name="service">
                                     <option value="Technique">Technique</option>
                                     <option value="Client">Client</option>
                                     <option value="Marketing">Marketing</option>
@@ -68,29 +79,15 @@ export const ModifyUser = () => {
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="lastname">Nom</label>
-                                <input
-                                    {...register("lastname")}
-                                    defaultValue={modifyUser?.lastname}
-                                    name="lastname"
-                                    type="text"
-                                />
+                                <input {...register("lastname")} name="lastname" type="text" />
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="firstname">Prénom</label>
-                                <input
-                                    {...register("firstname")}
-                                    defaultValue={modifyUser?.firstname}
-                                    type="firstname"
-                                />
+                                <input {...register("firstname")} type="firstname" />
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="email">Email</label>
-                                <input
-                                    {...register("email")}
-                                    defaultValue={modifyUser?.email}
-                                    name="email"
-                                    type="email"
-                                />
+                                <input {...register("email")} name="email" type="email" />
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="password">Mot de passe</label>
@@ -110,48 +107,23 @@ export const ModifyUser = () => {
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="phone">Téléphone</label>
-                                <input
-                                    {...register("phone")}
-                                    defaultValue={modifyUser?.phone}
-                                    name="phone"
-                                    type="tel"
-                                />
+                                <input {...register("phone")} name="phone" type="tel" />
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="birthdate">Date de naissance</label>
-                                <input
-                                    {...register("birthdate")}
-                                    defaultValue={modifyUser?.birthdate}
-                                    name="birthdate"
-                                    type="date"
-                                />
+                                <input {...register("birthdate")} name="birthdate" type="date" />
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="city">Ville</label>
-                                <input
-                                    {...register("city")}
-                                    defaultValue={modifyUser?.city}
-                                    name="city"
-                                    type="text"
-                                />
+                                <input {...register("city")} name="city" type="text" />
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="country">Pays</label>
-                                <input
-                                    {...register("country")}
-                                    defaultValue={modifyUser?.country}
-                                    name="country"
-                                    type="text"
-                                />
+                                <input {...register("country")} name="country" type="text" />
                             </div>
                             <div className={input__group}>
                                 <label htmlFor="photo">Url de la photo</label>
-                                <input
-                                    {...register("photo")}
-                                    defaultValue={modifyUser?.photo}
-                                    name="photo"
-                                    type="url"
-                                />
+                                <input {...register("photo")} name="photo" type="url" />
                             </div>
                         </div>
                         {errors.password2 && <span>Les mots de passe ne sont pas identiques</span>}

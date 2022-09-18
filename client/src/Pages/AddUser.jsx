@@ -19,9 +19,13 @@ export const AddUser = () => {
         formState: { errors }
     } = useForm();
 
-    async function submitFrom(data) {
+    async function submitFrom(data, e) {
         delete data.password2;
-        addNewUser(data);
+        try {
+            const { status } = addNewUser(data);
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
