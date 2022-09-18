@@ -52,7 +52,6 @@ export const ModifyUser = () => {
         if (data.password === "") {
             delete data.password;
         }
-        console.log(data);
         modifyProfil(id, data);
     }
 
