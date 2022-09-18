@@ -1,7 +1,8 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { filterCollaboraters } from "@app/Redux/reducers/collaboratersReducer";
+import { setModifyUser } from "@app/Redux/reducers/userReducer";
 
 import {
     img__container,
@@ -10,7 +11,7 @@ import {
     description,
     admin
 } from "@app/Sass/Components/Card.module.scss";
-import { deleteUser } from "@app/Services";
+import { deleteUser, getSpecificCollaborater } from "@app/Services";
 
 export const Card = ({
     photo,
@@ -28,6 +29,7 @@ export const Card = ({
     const { currentUser } = useSelector((state) => state.user);
     const location = useLocation();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     async function adminDeleteUser() {
         try {
@@ -35,6 +37,16 @@ export const Card = ({
             if (status === 200) {
                 dispatch(filterCollaboraters(id));
             }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async function adminModifyUser() {
+        try {
+            const data = await getSpecificCollaborater(id);
+            dispatch(setModifyUser(data));
+            navigate(`/modify/${id}`);
         } catch (err) {
             console.log(err);
         }
@@ -61,12 +73,10 @@ export const Card = ({
                 {location.pathname === "/home" && (
                     <button onClick={() => newCollaborater()}>Quelqu'un d'autre !</button>
                 )}
-                {(currentUser.isAdmin === true) && location.pathname === "/list" && (
+                {currentUser.isAdmin === true && location.pathname === "/list" && (
                     <div className={admin}>
                         <button onClick={() => adminDeleteUser()}>Supprimer</button>
-                        <Link to={`/modify/${id}`}>
-                            <button>Modifier</button>
-                        </Link>
+                        <button onClick={() => adminModifyUser()}>Modifier</button>
                     </div>
                 )}
             </div>

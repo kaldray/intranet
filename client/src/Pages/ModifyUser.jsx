@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { setModifyUser } from "@app/Redux/reducers/userReducer";
+import { useSelector } from "react-redux";
 
-import { getSpecificCollaborater, modifyProfil } from "@app/Services";
+import { modifyProfil } from "@app/Services";
 import { Layout } from "@app/Components";
 
 import {
@@ -17,15 +16,6 @@ import {
 export const ModifyUser = () => {
     const { id } = useParams();
     const { modifyUser } = useSelector((state) => state.user);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        async function getUserInfo() {
-            const data = await getSpecificCollaborater(id);
-            dispatch(setModifyUser(data));
-        }
-        getUserInfo();
-    }, []);
 
     const {
         register,
